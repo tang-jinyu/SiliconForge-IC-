@@ -1,0 +1,18 @@
+{
+  "case_id": "add8_verified",
+  "title": "Verified 8-bit adder",
+  "task_kind": "eda_triage",
+  "task_file": "task.md",
+  "metadata": {
+    "rtl_path": "rtl.v",
+    "testbench_path": "tb.v",
+    "contract_path": "task.interface.v"
+  },
+  "expected": {
+    "overall_pass": true,
+    "simulation_passed": true,
+    "synthesis_passed": true,
+    "max_repair_attempts": 0,
+    "required_artifacts": ["rtl_code.v", "testbench.v", "eda_result.json", "review.json", "skill_card.json", "security_report.json"]
+  }
+}

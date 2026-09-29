@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数字 IC 智能设计工作台</title>
+    <link rel="stylesheet" href="/styles.css?v=7">
+</head>
+<body data-app-ready="false">
+    <div class="space-backdrop" aria-hidden="true">
+        <div class="space-backdrop__wash"></div>
+        <div class="space-backdrop__glow space-backdrop__glow--left"></div>
+        <div class="space-backdrop__glow space-backdrop__glow--right"></div>
+        <div class="space-backdrop__grid"></div>
+        <div class="photo-ribbon photo-ribbon--far"><div class="photo-ribbon__track">
+            <i class="photo-ribbon__frame photo-ribbon__frame--one"></i><i class="photo-ribbon__frame photo-ribbon__frame--two"></i><i class="photo-ribbon__frame photo-ribbon__frame--three"></i><i class="photo-ribbon__frame photo-ribbon__frame--four"></i><i class="photo-ribbon__frame photo-ribbon__frame--five"></i><i class="photo-ribbon__frame photo-ribbon__frame--six"></i><i class="photo-ribbon__frame photo-ribbon__frame--seven"></i>
+            <i class="photo-ribbon__frame photo-ribbon__frame--one"></i><i class="photo-ribbon__frame photo-ribbon__frame--two"></i><i class="photo-ribbon__frame photo-ribbon__frame--three"></i><i class="photo-ribbon__frame photo-ribbon__frame--four"></i><i class="photo-ribbon__frame photo-ribbon__frame--five"></i><i class="photo-ribbon__frame photo-ribbon__frame--six"></i><i class="photo-ribbon__frame photo-ribbon__frame--seven"></i>
+        </div></div>
+        <div class="photo-ribbon photo-ribbon--near"><div class="photo-ribbon__track">
+            <i class="photo-ribbon__frame photo-ribbon__frame--seven"></i><i class="photo-ribbon__frame photo-ribbon__frame--six"></i><i class="photo-ribbon__frame photo-ribbon__frame--five"></i><i class="photo-ribbon__frame photo-ribbon__frame--four"></i><i class="photo-ribbon__frame photo-ribbon__frame--three"></i><i class="photo-ribbon__frame photo-ribbon__frame--two"></i><i class="photo-ribbon__frame photo-ribbon__frame--one"></i>
+            <i class="photo-ribbon__frame photo-ribbon__frame--seven"></i><i class="photo-ribbon__frame photo-ribbon__frame--six"></i><i class="photo-ribbon__frame photo-ribbon__frame--five"></i><i class="photo-ribbon__frame photo-ribbon__frame--four"></i><i class="photo-ribbon__frame photo-ribbon__frame--three"></i><i class="photo-ribbon__frame photo-ribbon__frame--two"></i><i class="photo-ribbon__frame photo-ribbon__frame--one"></i>
+        </div></div>
+        <div class="photo-ribbon photo-ribbon--float"><div class="photo-ribbon__track">
+            <i class="photo-ribbon__frame photo-ribbon__frame--three"></i><i class="photo-ribbon__frame photo-ribbon__frame--one"></i><i class="photo-ribbon__frame photo-ribbon__frame--six"></i><i class="photo-ribbon__frame photo-ribbon__frame--two"></i><i class="photo-ribbon__frame photo-ribbon__frame--five"></i><i class="photo-ribbon__frame photo-ribbon__frame--four"></i><i class="photo-ribbon__frame photo-ribbon__frame--seven"></i>
+            <i class="photo-ribbon__frame photo-ribbon__frame--three"></i><i class="photo-ribbon__frame photo-ribbon__frame--one"></i><i class="photo-ribbon__frame photo-ribbon__frame--six"></i><i class="photo-ribbon__frame photo-ribbon__frame--two"></i><i class="photo-ribbon__frame photo-ribbon__frame--five"></i><i class="photo-ribbon__frame photo-ribbon__frame--four"></i><i class="photo-ribbon__frame photo-ribbon__frame--seven"></i>
+        </div></div>
+    </div>
+    <div class="page-shell">
+        <header class="studio-header panel">
+            <div>
+                <p class="eyebrow">可信 RTL 工程智能体</p>
+                <h1>SiliconForge</h1>
+                <p class="hero-identity">需求 → RTL → 仿真 → 综合 → 自动修复</p>
+            </div>
+            <div class="studio-header__status">
+                <span id="live-indicator" class="live-indicator live-indicator--idle">实时通道未连接</span>
+                <div class="hero-actions">
+                    <button id="phase1-demo-button" class="primary-button" type="button">一键运行阶段一演示</button>
+                    <button id="competition-benchmark-button" class="primary-button primary-button--neon" type="button">运行模型盲测</button>
+                    <button id="refresh-button" class="primary-button" type="button">刷新任务视图</button>
+                    <button id="run-next-button" class="secondary-button" type="button">执行队列下一项</button>
+                </div>
+            </div>
+        </header>
+
+        <nav class="view-tabs" aria-label="工作台导航">
+            <button class="view-tab is-active" type="button" data-screen="home">系统概览</button>
+            <button class="view-tab" type="button" data-flow-key="digital_ic_workflow">完整闭环</button>
+            <button class="view-tab" type="button" data-flow-key="rtl_module_generation">模块生成</button>
+            <button class="view-tab" type="button" data-flow-key="eda_triage">EDA 故障分析</button>
+                    <button class="view-tab" type="button" data-flow-key="interface_contract_check">已有工程校验</button>
+            <button class="view-tab" type="button" data-flow-key="tb_repair">测试平台修复</button>
+            <button class="view-tab" type="button" data-screen="workspace">工作台</button>
+            <button class="view-tab" type="button" data-screen="library">模板库</button>
+        </nav>
+
+        <main class="screen-stack">
+            <section id="screen-home" class="screen is-active">
+                <div class="home-hero-shell">
+                    <section class="panel hero-card hero-card--profile">
+                        <div class="panel-header">
+                            <p class="panel-kicker">系统使命</p>
+                            <h2>让每一行 RTL 都经过工具证明</h2>
+                        </div>
+                        <div class="profile-intro">
+                            <div class="profile-copy-block">
+                                <p class="hero-text hero-text--lead">
+                                    SiliconForge 面向数字 IC 竞赛与 FPGA 原型开发，把大模型生成能力接入可重复的 EDA 验证闭环。
+                                </p>
+                                <p class="hero-text">
+                                    模型负责理解、生成与修复，Icarus Verilog、Yosys 或 Vivado 负责裁决。失败不会被包装成成功，而会转化为下一轮可追踪的修复证据。
+                                </p>
+                                <div class="profile-tag-row">
+                                    <span class="profile-tag">可信技能</span>
+                                    <span class="profile-tag">EDA 硬门禁</span>
+                                    <span class="profile-tag">可迁移至 H100</span>
+                                </div>
+                                <div class="home-actions">
+                                    <button class="primary-button" type="button" data-flow-key="rtl_module_generation">进入模块生成</button>
+                                    <button class="secondary-button" type="button" data-screen="workspace">直接看工作台</button>
+                                </div>
+                            </div>
+                            <aside class="profile-visual-card profile-visual-card--portrait">
+                                <div class="profile-photo-stage">
+                                    <img id="profile-photo" class="profile-photo" src="/pictures/1.jpg" alt="SiliconForge 个性化人物主视觉">
+                                    <span class="profile-photo-orbit profile-photo-orbit--one"></span>
+                                    <span class="profile-photo-orbit profile-photo-orbit--two"></span>
+                                    <div class="profile-photo-badge"><span>MY</span><strong>AGENT</strong></div>
+                                </div>
+                                <div class="profile-visual-meta">
+                                    <span>个性化智能体</span>
+                                    <strong>用自己的照片定义工作台形象</strong>
+                                    <p id="portrait-status">默认展示项目作者形象。上传照片后，首页与 3D 背景会一键换肤。</p>
+                                    <div class="portrait-actions">
+                                        <label class="primary-button portrait-upload-button" for="portrait-upload">上传照片并换肤</label>
+                                        <input id="portrait-upload" type="file" accept="image/jpeg,image/png,image/webp" hidden>
+                                        <button id="portrait-reset" class="secondary-button" type="button">恢复默认形象</button>
+                                    </div>
+                                </div>
+                            </aside>
+                        </div>
+                    </section>
+
+                    <aside class="panel profile-rail">
+                        <div class="panel-header">
+                            <p class="panel-kicker">运行状态</p>
+                            <h2>运行环境</h2>
+                        </div>
+                        <div class="identity-grid identity-grid--stack">
+                            <article class="identity-card">
+                                <span>平台</span>
+                                <strong id="runtime-platform">检测中</strong>
+                            </article>
+                            <article class="identity-card">
+                                <span>模型</span>
+                                <strong id="runtime-model">检测中</strong>
+                            </article>
+                            <article class="identity-card">
+                                <span>GPU</span>
+                                <strong id="runtime-gpu">检测中</strong>
+                            </article>
+                            <article class="identity-card">
+                                    <span>电子设计自动化</span>
+                                <strong id="runtime-eda">检测中</strong>
+                            </article>
+                        </div>
+                    </aside>
+                </div>
+
+                <div class="home-editorial-grid">
+                    <section class="panel panel-story">
+                        <div class="panel-header">
+                            <p class="panel-kicker">证据流水线</p>
+                            <h2>三个可审计阶段</h2>
+                        </div>
+                        <div class="story-grid">
+                            <article class="story-card">
+                                <span>01</span>
+                                <h3>生成设计</h3>
+                                <p>从自然语言需求抽取接口、时序、资源与边界条件，生成规格、RTL 和自检测试平台。</p>
+                            </article>
+                            <article class="story-card">
+                                <span>02</span>
+                                <h3>硬件验证</h3>
+                                <p>执行接口契约预检、真实仿真和逻辑综合，任何硬门禁失败都会阻止伪成功。</p>
+                            </article>
+                            <article class="story-card">
+                                <span>03</span>
+                                <h3>闭环修复</h3>
+                                <p>模型读取真实错误日志，局部修复并重新回归，完整保留每轮证据、差异与安全报告。</p>
+                            </article>
+                        </div>
+                    </section>
+
+                    <section class="panel panel-kinds">
+                        <div class="panel-header">
+                            <p class="panel-kicker">任务入口</p>
+                            <h2>五个流程</h2>
+                        </div>
+                        <div id="task-kind-list" class="kind-list kind-list--launcher"></div>
+                    </section>
+
+                    <aside class="panel panel-access panel-access--compact">
+                        <div class="panel-header">
+                            <p class="panel-kicker">会话设置</p>
+                            <h2>会话配置</h2>
+                        </div>
+                        <p class="panel-access-note">保留登录与模型配置，但默认收进更紧凑的抽屉，不让配置区抢掉首页主角。</p>
+                        <details class="access-drawer" open>
+                            <summary>登录会话</summary>
+                            <p id="auth-status" class="account-status account-status--local"></p>
+                            <form id="auth-form" class="task-form task-form--compact">
+                                <label>
+                                    <span>显示名称</span>
+                                    <input id="display-name" name="display-name" type="text" placeholder="例如：demo-user">
+                                </label>
+                                <label>
+                                    <span>访问口令</span>
+                                    <input id="access-password" name="access-password" type="password" placeholder="部署到外网时填写">
+                                </label>
+                                <div class="form-actions">
+                                    <button id="login-button" class="primary-button" type="submit">登录</button>
+                                    <button id="logout-button" class="secondary-button" type="button">退出</button>
+                                </div>
+                            </form>
+                        </details>
+                        <details class="access-drawer">
+                            <summary>模型与 API</summary>
+                            <p id="llm-config-status" class="account-status account-status--local"></p>
+                            <form id="llm-config-form" class="task-form task-form--compact">
+                                <label>
+                                    <span>个人接口密钥</span>
+                                    <input id="user-api-key" name="user-api-key" type="password" placeholder="仅在当前会话使用，不会回显">
+                                </label>
+                                <label>
+                                    <span>接口地址</span>
+                                    <input id="user-base-url" name="user-base-url" type="text" placeholder="例如：https://api.openai.com/v1">
+                                </label>
+                                <label>
+                                    <span>模型名称</span>
+                                    <input id="user-model" name="user-model" type="text" placeholder="例如：gpt-4.1-mini">
+                                </label>
+                                <label>
+                                    <span>模型传输协议</span>
+                                    <select id="user-transport" name="user-transport">
+                                        <option value="auto">自动选择</option>
+                                        <option value="responses_background">后台响应接口</option>
+                                        <option value="chat">对话补全接口</option>
+                                    </select>
+                                </label>
+                                <div class="form-actions">
+                                    <button class="secondary-button" type="submit">保存会话配置</button>
+                                </div>
+                            </form>
+                        </details>
+                    </aside>
+                </div>
+
+                <section class="panel panel-gallery-strip">
+                    <div class="panel-header">
+                        <p class="panel-kicker">实时证据</p>
+                        <h2>最近任务与验证资产</h2>
+                    </div>
+                    <div id="gallery-track" class="gallery-track gallery-track--strip"></div>
+                </section>
+            </section>
+
+            <section id="screen-studio" class="screen" hidden>
+                <div class="studio-grid">
+                    <section class="panel panel-flow-spotlight">
+                        <div class="panel-header">
+                            <p id="flow-kicker" class="panel-kicker">流程设计台</p>
+                            <h2 id="flow-title">提交新的数字 IC 任务</h2>
+                        </div>
+                        <p id="flow-description" class="hero-text hero-text--compact"></p>
+                        <div id="flow-highlights" class="flow-highlights"></div>
+                        <div class="home-actions">
+                            <button class="secondary-button" type="button" data-screen="home">返回基本信息</button>
+                            <button class="secondary-button" type="button" data-screen="workspace">查看工作台</button>
+                        </div>
+                    </section>
+
+                    <section class="panel panel-form">
+                        <div class="panel-header">
+                            <p class="panel-kicker">任务启动</p>
+                            <h2>提交新的数字 IC 任务</h2>
+                        </div>
+                        <form id="task-form" class="task-form">
+                            <div id="workflow-input-guide" class="workflow-input-guide">
+                                <strong>只需粘贴赛题</strong>
+                                <span>智能体将自动分析需求、设计接口契约、生成 RTL 与测试平台，并执行仿真、综合和失败修复。</span>
+                            </div>
+
+                            <label>
+                                <span id="requirement-label">赛题原文（唯一必填）</span>
+                                <textarea id="requirement-text" name="requirement-text" rows="10" placeholder="把完整赛题原文粘贴到这里。接口、时序、复位、边界条件和验证方案由 Agent 自动分析。"></textarea>
+                                <small id="requirement-help" class="field-help">无需手工填写接口契约，也无需先准备 RTL 或测试平台。</small>
+                            </label>
+
+                            <label>
+                                <span>任务标题（选填）</span>
+                                <input id="title" name="title" type="text" placeholder="不填也可以；系统会自动生成任务标题">
+                            </label>
+
+                            <div class="two-column">
+                                <label>
+                                    <span>任务类型</span>
+                                    <select id="task-kind" name="task-kind"></select>
+                                </label>
+                                <label>
+                                    <span>执行方式</span>
+                                    <select id="execution" name="execution">
+                                        <option value="sync" selected>立即执行（推荐）</option>
+                                        <option value="queue">进入队列（需单独启动执行器）</option>
+                                    </select>
+                                </label>
+                            </div>
+
+                            <div class="two-column">
+                                <label>
+                                    <span>模式</span>
+                                    <select id="mode" name="mode">
+                                        <option value="fpga">fpga</option>
+                                    </select>
+                                </label>
+                                <label class="toggle-card">
+                                    <span>试运行（仅检查流程，不调用真实模型）</span>
+                                    <input id="dry-run" name="dry-run" type="checkbox">
+                                </label>
+                            </div>
+
+                            <label>
+                                <span>输出目录</span>
+                                <input id="output-dir" name="output-dir" type="text" placeholder="留空则自动生成 runs/api_* 目录">
+                            </label>
+
+                            <details id="advanced-inputs" class="advanced-box">
+                                <summary>高级输入（诊断已有工程时使用）</summary>
+                                <p class="advanced-tip">完整闭环无需填写以下内容。只有 EDA 故障分析、接口契约校验或修复已有工程时，才需要提供 RTL、测试平台、契约或文件路径。</p>
+                                <label>
+                                    <span>任务文件路径</span>
+                                    <input id="task-file" name="task-file" type="text" placeholder="例如：examples/hqc_single_fpga_case.md">
+                                </label>
+                                <label>
+                                    <span>RTL 文本</span>
+                                    <textarea id="rtl-code" name="rtl-code" rows="6" placeholder="metadata.rtl_code"></textarea>
+                                </label>
+                                <label>
+                                    <span>测试平台文本</span>
+                                    <textarea id="testbench-code" name="testbench-code" rows="6" placeholder="metadata.testbench_code"></textarea>
+                                </label>
+                                <label>
+                                    <span>接口契约文本</span>
+                                    <textarea id="interface-contract" name="interface-contract" rows="6" placeholder="metadata.interface_contract"></textarea>
+                                </label>
+                                <div class="two-column">
+                                    <label>
+                                        <span>RTL 路径</span>
+                                        <input id="rtl-path" name="rtl-path" type="text" placeholder="metadata.rtl_path">
+                                    </label>
+                                    <label>
+                                        <span>测试平台路径</span>
+                                        <input id="tb-path" name="tb-path" type="text" placeholder="metadata.testbench_path">
+                                    </label>
+                                </div>
+                                <label>
+                                    <span>接口契约路径</span>
+                                    <input id="contract-path" name="contract-path" type="text" placeholder="metadata.contract_path">
+                                </label>
+                            </details>
+
+                            <div class="form-actions">
+                                <button id="submit-task-button" class="primary-button" type="submit">一键启动完整闭环</button>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+            </section>
+
+            <section id="screen-library" class="screen" hidden>
+                <section class="panel template-library-panel">
+                    <div class="template-library-head">
+                        <div>
+                            <p class="panel-kicker">可复用设计资产</p>
+                            <h2>参数化模板库</h2>
+                            <p class="hero-text hero-text--compact">直接调用已验证模板，不消耗大模型 Token；实例化后仍会执行仿真与综合，防止参数变化引入错误。</p>
+                        </div>
+                        <div class="template-library-stat">
+                            <strong id="template-count">0</strong>
+                            <span>个可用模板</span>
+                        </div>
+                    </div>
+                    <div id="template-library-list" class="template-library-grid"></div>
+                </section>
+            </section>
+
+            <section id="screen-workspace" class="screen" hidden>
+                <div class="workspace-grid">
+                    <aside class="workspace-rail">
+                        <section class="panel panel-feed">
+                            <div class="panel-header">
+                                <p class="panel-kicker">任务记录</p>
+                                <h2>任务时间线</h2>
+                            </div>
+                            <p class="workspace-rail-copy">左侧固定看任务队列与执行摘要，按时间线切换任务，适合快速浏览状态变化。</p>
+                            <div id="task-feed" class="task-feed task-feed--timeline"></div>
+                        </section>
+                    </aside>
+
+                    <section class="workspace-stage">
+                        <section class="panel panel-detail">
+                            <div class="panel-header">
+                                <p class="panel-kicker">任务详情</p>
+                                <h2>设计与验证工作区</h2>
+                            </div>
+                            <p class="workspace-stage-copy">右侧作为主舞台，集中展示任务诊断、资产、日志、波形和生成产物预览。</p>
+                            <div id="task-detail" class="empty-state">
+                                选择一个任务，查看截图、日志快照和生成产物预览。
+                            </div>
+                        </section>
+                    </section>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <template id="task-card-template">
+        <article class="task-card">
+            <div class="task-card-head">
+                <div>
+                    <p class="task-kind-label"></p>
+                    <h3 class="task-title"></h3>
+                </div>
+                <span class="status-badge"></span>
+            </div>
+            <p class="task-meta"></p>
+            <div class="task-actions"></div>
+            <div class="progress-block">
+                <div class="progress-label-row">
+                    <span class="progress-stage"></span>
+                    <span class="progress-percent"></span>
+                </div>
+                <div class="progress-bar"><span class="progress-fill"></span></div>
+            </div>
+            <div class="eda-summary"></div>
+            <div class="repair-history"></div>
+            <div class="asset-list"></div>
+            <form class="asset-upload-form">
+                <div class="two-column compact-grid">
+                    <label>
+                        <span>封面类型</span>
+                        <select class="asset-type-select">
+                            <option value="board_photo">板卡图</option>
+                            <option value="waveform_capture">波形图</option>
+                            <option value="log_snapshot">日志快照</option>
+                            <option value="artifact_preview">产物预览</option>
+                        </select>
+                    </label>
+                    <label class="toggle-card compact-toggle">
+                        <span>设为封面</span>
+                        <input class="asset-cover-checkbox" type="checkbox" checked>
+                    </label>
+                </div>
+                <label>
+                    <span>说明文字</span>
+                    <input class="asset-caption-input" type="text" placeholder="例如：KC705 板卡、仿真波形、repair 日志截图">
+                </label>
+                <label>
+                    <span>上传图片或快照</span>
+                    <input class="asset-file-input" type="file" accept="image/*,.svg,.png,.jpg,.jpeg,.webp,.gif">
+                </label>
+                <button class="secondary-button asset-upload-button" type="submit">上传任务封面</button>
+            </form>
+        </article>
+    </template>
+
+    <script src="/app.js?v=7" defer></script>
+</body>
+</html>

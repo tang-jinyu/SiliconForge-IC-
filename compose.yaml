@@ -1,0 +1,12 @@
+services:
+  agent:
+    build:
+      context: .
+    restart: unless-stopped
+    ports:
+      - "${DIGITAL_IC_AGENT_BIND_ADDRESS:-127.0.0.1}:${DIGITAL_IC_AGENT_PORT:-8000}:8000"
+    env_file:
+      - .env.server
+    volumes:
+      - ./runs:/app/runs
+      - ./.agent_queue:/app/.agent_queue

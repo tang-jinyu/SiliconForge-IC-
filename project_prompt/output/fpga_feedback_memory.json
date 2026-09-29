@@ -1,0 +1,350 @@
+{
+  "updated_at": "2026-09-29T10:05:39.002359+00:00",
+  "entries": [
+    {
+      "task_id": "ce30440318874652952de0306727dc7f",
+      "task_title": "8-bit adder module generation",
+      "task_kind": "rtl_module_generation",
+      "captured_at": "2026-05-29T04:22:58.959264+00:00",
+      "outcome": "precheck_failure",
+      "skill_categories": [
+        "interface_contract_and_handshake"
+      ],
+      "error_tags": [
+        "interface_contract_mismatch"
+      ],
+      "recommended_guardrails": [
+        "Preserve the exact top-level module header and visible handshake contract before changing internals."
+      ]
+    },
+    {
+      "task_id": "dae7d7989edc4853aa8c50573f6d7777",
+      "task_title": "8-bit adder module generation",
+      "task_kind": "rtl_module_generation",
+      "captured_at": "2026-05-29T04:24:29.843706+00:00",
+      "outcome": "precheck_failure",
+      "skill_categories": [
+        "interface_contract_and_handshake"
+      ],
+      "error_tags": [
+        "interface_contract_mismatch"
+      ],
+      "recommended_guardrails": [
+        "Preserve the exact top-level module header and visible handshake contract before changing internals."
+      ]
+    },
+    {
+      "task_id": "74d0f9ea74574a1796644e7dbe1c819a",
+      "task_title": "8-bit adder module generation",
+      "task_kind": "rtl_module_generation",
+      "captured_at": "2026-05-29T05:17:04.298768+00:00",
+      "outcome": "precheck_failure",
+      "skill_categories": [
+        "interface_contract_and_handshake",
+        "arithmetic_width_and_signedness",
+        "latency_and_observability",
+        "repair_root_cause_locality",
+        "tb_external_stimulus_and_selfcheck"
+      ],
+      "error_tags": [
+        "interface_contract_mismatch"
+      ],
+      "fingerprint_keys": [
+        "handshake_contract_surface",
+        "carry_borrow_path",
+        "state_hold_visibility",
+        "error_path_determinism",
+        "public_serial_stimulus"
+      ],
+      "recommended_guardrails": [
+        "Preserve the exact top-level module header and visible handshake contract before changing internals.",
+        "Define and preserve cycle-level handshake meaning before adjusting local control logic.",
+        "Extend arithmetic one bit wider than the visible datapath and define carry or borrow semantics explicitly.",
+        "Hold contract-visible status and result signals long enough for external sampling instead of emitting transient pulses.",
+        "Drive error and fault outcomes deterministically through one visible path instead of same-edge self-sampling tricks.",
+        "Stimulate serial ingress through the exposed pins and timing model rather than invented helper wires in the testbench."
+      ]
+    },
+    {
+      "task_id": "a15309f62a774ee0a63bc142769c4c94",
+      "task_title": "Carry borrow ALU8",
+      "task_kind": "rtl_module_generation",
+      "captured_at": "2026-05-29T05:17:40.423718+00:00",
+      "outcome": "precheck_failure",
+      "skill_categories": [
+        "interface_contract_and_handshake",
+        "arithmetic_width_and_signedness",
+        "latency_and_observability",
+        "repair_root_cause_locality",
+        "tb_external_stimulus_and_selfcheck"
+      ],
+      "error_tags": [
+        "interface_contract_mismatch"
+      ],
+      "fingerprint_keys": [
+        "handshake_contract_surface",
+        "carry_borrow_path",
+        "signedness_control",
+        "state_hold_visibility",
+        "error_path_determinism",
+        "public_serial_stimulus"
+      ],
+      "recommended_guardrails": [
+        "Preserve the exact top-level module header and visible handshake contract before changing internals.",
+        "Define and preserve cycle-level handshake meaning before adjusting local control logic.",
+        "Extend arithmetic one bit wider than the visible datapath and define carry or borrow semantics explicitly.",
+        "Do not rely on tool-default signed promotion; state signedness intent in the spec and RTL.",
+        "Hold contract-visible status and result signals long enough for external sampling instead of emitting transient pulses.",
+        "Drive error and fault outcomes deterministically through one visible path instead of same-edge self-sampling tricks.",
+        "Stimulate serial ingress through the exposed pins and timing model rather than invented helper wires in the testbench."
+      ]
+    },
+    {
+      "task_id": "41f2776e78c74bea8f4c32bc79923d90",
+      "task_title": "Verified 8-bit adder",
+      "task_kind": "eda_triage",
+      "captured_at": "2026-09-27T06:45:26.016129+00:00",
+      "outcome": "simulation_failure",
+      "skill_categories": [
+        "repair_root_cause_locality",
+        "arithmetic_width_and_signedness"
+      ],
+      "error_tags": [
+        "unknown_fpga_failure"
+      ],
+      "fingerprint_keys": [
+        "carry_borrow_path"
+      ],
+      "recommended_guardrails": [
+        "Capture the first reproducible failing observable and add a dedicated rule once the pattern repeats.",
+        "Extend arithmetic one bit wider than the visible datapath and define carry or borrow semantics explicitly."
+      ]
+    },
+    {
+      "task_id": "099f4a994d264bae80fa2156a112178a",
+      "task_title": "Verified handshake FSM",
+      "task_kind": "eda_triage",
+      "captured_at": "2026-09-27T06:46:21.574741+00:00",
+      "outcome": "simulation_failure",
+      "skill_categories": [
+        "repair_root_cause_locality",
+        "interface_contract_and_handshake"
+      ],
+      "error_tags": [
+        "unknown_fpga_failure"
+      ],
+      "fingerprint_keys": [
+        "handshake_contract_surface"
+      ],
+      "recommended_guardrails": [
+        "Capture the first reproducible failing observable and add a dedicated rule once the pattern repeats.",
+        "Define and preserve cycle-level handshake meaning before adjusting local control logic."
+      ]
+    },
+    {
+      "task_id": "335f454619384a469c81e4cf352e0eb0",
+      "task_title": "Verified synchronous FIFO",
+      "task_kind": "eda_triage",
+      "captured_at": "2026-09-27T06:47:00.442077+00:00",
+      "outcome": "simulation_failure",
+      "skill_categories": [
+        "repair_root_cause_locality",
+        "resource_inference_templates"
+      ],
+      "error_tags": [
+        "unknown_fpga_failure"
+      ],
+      "fingerprint_keys": [
+        "error_path_determinism",
+        "ram_fifo_inference"
+      ],
+      "recommended_guardrails": [
+        "Capture the first reproducible failing observable and add a dedicated rule once the pattern repeats.",
+        "Drive error and fault outcomes deterministically through one visible path instead of same-edge self-sampling tricks.",
+        "Keep storage logic inference-friendly and local instead of hiding it behind undefined wrappers or ambiguous read-write behavior."
+      ]
+    },
+    {
+      "task_id": "138451cacc1e444f87a367ecb0ca57fb",
+      "task_title": "Verified handshake FSM",
+      "task_kind": "eda_triage",
+      "captured_at": "2026-09-27T07:07:28.725706+00:00",
+      "outcome": "simulation_failure",
+      "skill_categories": [
+        "latency_and_observability",
+        "interface_contract_and_handshake"
+      ],
+      "error_tags": [
+        "simulation_self_check_failure"
+      ],
+      "fingerprint_keys": [
+        "handshake_contract_surface"
+      ],
+      "recommended_guardrails": [
+        "When self-checking simulation fails after synthesis passes, trace the first broken visible handshake or result-hold condition.",
+        "Define and preserve cycle-level handshake meaning before adjusting local control logic."
+      ]
+    },
+    {
+      "task_id": "bdd665e9183c4a68a52988ae190e4b65",
+      "task_title": "设计一个66x66乘法器",
+      "task_kind": "digital_ic_workflow",
+      "captured_at": "2026-09-28T05:28:50.917651+00:00",
+      "outcome": "simulation_failure",
+      "skill_categories": [
+        "repair_root_cause_locality",
+        "interface_contract_and_handshake",
+        "arithmetic_width_and_signedness",
+        "resource_inference_templates"
+      ],
+      "error_tags": [
+        "unknown_fpga_failure"
+      ],
+      "fingerprint_keys": [
+        "handshake_contract_surface",
+        "endian_byte_order",
+        "signedness_control",
+        "error_path_determinism",
+        "ram_fifo_inference"
+      ],
+      "recommended_guardrails": [
+        "Capture the first reproducible failing observable and add a dedicated rule once the pattern repeats.",
+        "Define and preserve cycle-level handshake meaning before adjusting local control logic.",
+        "Make byte ordering explicit across interface packing, storage layout, and visible result buses.",
+        "Do not rely on tool-default signed promotion; state signedness intent in the spec and RTL.",
+        "Drive error and fault outcomes deterministically through one visible path instead of same-edge self-sampling tricks.",
+        "Keep storage logic inference-friendly and local instead of hiding it behind undefined wrappers or ambiguous read-write behavior."
+      ]
+    },
+    {
+      "task_id": "f01fa211bb534a67b31323e37945fd50",
+      "task_title": "设计一个66x66乘法器",
+      "task_kind": "digital_ic_workflow",
+      "captured_at": "2026-09-28T05:52:40.246614+00:00",
+      "outcome": "runtime_failure",
+      "skill_categories": [
+        "repair_root_cause_locality"
+      ],
+      "error_tags": [
+        "runtime_exception"
+      ],
+      "fingerprint_keys": [],
+      "recommended_guardrails": [
+        "Stabilize the first runtime exception and preserve partial artifacts for diagnosis before widening the repair scope."
+      ]
+    },
+    {
+      "task_id": "36c04f7a511347869f4019aebef567b4",
+      "task_title": "Blind synchronous FIFO",
+      "task_kind": "rtl_module_generation",
+      "captured_at": "2026-09-28T09:55:23.690085+00:00",
+      "outcome": "runtime_failure",
+      "skill_categories": [
+        "repair_root_cause_locality",
+        "resource_inference_templates"
+      ],
+      "error_tags": [
+        "runtime_exception"
+      ],
+      "fingerprint_keys": [
+        "ram_fifo_inference"
+      ],
+      "recommended_guardrails": [
+        "Stabilize the first runtime exception and preserve partial artifacts for diagnosis before widening the repair scope.",
+        "Keep storage logic inference-friendly and local instead of hiding it behind undefined wrappers or ambiguous read-write behavior."
+      ]
+    },
+    {
+      "task_id": "f1aded1e8bed404795963b724ceefe75",
+      "task_title": "Blind overlapping sequence FSM",
+      "task_kind": "rtl_module_generation",
+      "captured_at": "2026-09-28T09:55:35.982339+00:00",
+      "outcome": "runtime_failure",
+      "skill_categories": [
+        "repair_root_cause_locality",
+        "resource_inference_templates",
+        "tb_external_stimulus_and_selfcheck"
+      ],
+      "error_tags": [
+        "runtime_exception"
+      ],
+      "fingerprint_keys": [
+        "ram_fifo_inference",
+        "public_serial_stimulus"
+      ],
+      "recommended_guardrails": [
+        "Stabilize the first runtime exception and preserve partial artifacts for diagnosis before widening the repair scope.",
+        "Keep storage logic inference-friendly and local instead of hiding it behind undefined wrappers or ambiguous read-write behavior.",
+        "Stimulate serial ingress through the exposed pins and timing model rather than invented helper wires in the testbench."
+      ]
+    },
+    {
+      "task_id": "18aa8a6833694f02ac552fac21386c95",
+      "task_title": "Blind SPI mode-0 receiver",
+      "task_kind": "rtl_module_generation",
+      "captured_at": "2026-09-28T09:55:47.252372+00:00",
+      "outcome": "runtime_failure",
+      "skill_categories": [
+        "repair_root_cause_locality",
+        "interface_contract_and_handshake",
+        "arithmetic_width_and_signedness",
+        "tb_external_stimulus_and_selfcheck"
+      ],
+      "error_tags": [
+        "runtime_exception"
+      ],
+      "fingerprint_keys": [
+        "handshake_contract_surface",
+        "endian_byte_order",
+        "public_serial_stimulus"
+      ],
+      "recommended_guardrails": [
+        "Stabilize the first runtime exception and preserve partial artifacts for diagnosis before widening the repair scope.",
+        "Define and preserve cycle-level handshake meaning before adjusting local control logic.",
+        "Make byte ordering explicit across interface packing, storage layout, and visible result buses.",
+        "Stimulate serial ingress through the exposed pins and timing model rather than invented helper wires in the testbench."
+      ]
+    },
+    {
+      "task_id": "3c7028af013547118d2631b6a2434ca5",
+      "task_title": "Blind RTL repair task",
+      "task_kind": "rtl_module_generation",
+      "captured_at": "2026-09-28T09:55:57.992275+00:00",
+      "outcome": "runtime_failure",
+      "skill_categories": [
+        "repair_root_cause_locality"
+      ],
+      "error_tags": [
+        "runtime_exception"
+      ],
+      "fingerprint_keys": [],
+      "recommended_guardrails": [
+        "Stabilize the first runtime exception and preserve partial artifacts for diagnosis before widening the repair scope."
+      ]
+    }
+  ],
+  "skill_counts": {
+    "interface_contract_and_handshake": 8,
+    "arithmetic_width_and_signedness": 5,
+    "latency_and_observability": 3,
+    "repair_root_cause_locality": 11,
+    "tb_external_stimulus_and_selfcheck": 4,
+    "resource_inference_templates": 4
+  },
+  "tag_counts": {
+    "interface_contract_mismatch": 4,
+    "unknown_fpga_failure": 4,
+    "simulation_self_check_failure": 1,
+    "runtime_exception": 5
+  },
+  "fingerprint_counts": {
+    "handshake_contract_surface": 6,
+    "carry_borrow_path": 3,
+    "state_hold_visibility": 2,
+    "error_path_determinism": 4,
+    "public_serial_stimulus": 4,
+    "signedness_control": 2,
+    "ram_fifo_inference": 4,
+    "endian_byte_order": 2
+  }
+}

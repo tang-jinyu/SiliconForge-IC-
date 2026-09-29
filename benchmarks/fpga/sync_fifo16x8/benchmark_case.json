@@ -1,0 +1,24 @@
+{
+  "case_id": "sync_fifo16x8",
+  "title": "Synchronous FIFO 16x8",
+  "task_kind": "rtl_module_generation",
+  "task_file": "task.md",
+  "expected": {
+    "overall_pass": true,
+    "simulation_passed": true,
+    "synthesis_passed": true,
+    "max_repair_attempts": 3,
+    "required_artifacts": [
+      "rtl_code.v",
+      "testbench.v",
+      "eda_result.json",
+      "review.json"
+    ],
+    "forbidden_precheck_substrings": [
+      "Interface contract mismatch",
+      "Undefined instantiated modules",
+      "delay controls (#)",
+      "same procedural target from multiple always blocks"
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "case_id": "fsm_handshake_controller",
+  "title": "FSM handshake controller",
+  "task_kind": "rtl_module_generation",
+  "task_file": "task.md",
+  "expected": {
+    "overall_pass": true,
+    "simulation_passed": true,
+    "synthesis_passed": true,
+    "max_repair_attempts": 3,
+    "required_artifacts": [
+      "rtl_code.v",
+      "testbench.v",
+      "eda_result.json",
+      "review.json"
+    ],
+    "forbidden_precheck_substrings": [
+      "Interface contract mismatch",
+      "Undefined instantiated modules",
+      "same procedural target from multiple always blocks",
+      "delay controls (#)"
+    ]
+  }
+}

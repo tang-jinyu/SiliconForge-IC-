@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "digital-ic-agent"
+version = "0.1.0"
+description = "Verifiable digital IC agent for specification, RTL, testbench, EDA closure, repair, and engineering delivery"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.11"
+classifiers = [
+    "License :: OSI Approved :: GNU Affero General Public License v3",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "fastapi>=0.115,<1",
+    "langgraph>=0.2.74,<0.4",
+    "langchain>=0.3.7,<0.4",
+    "langchain-openai>=0.2.8,<0.4",
+    "pydantic>=2.9,<3",
+    "python-multipart>=0.0.20,<1",
+    "python-dotenv>=1.0,<2",
+    "uvicorn>=0.32,<1",
+    "yowasp-yosys>=0.50,<0.60"
+]
+
+[project.optional-dependencies]
+test = [
+    "playwright>=1.54,<2"
+]
+
+[project.scripts]
+digital-ic-agent = 

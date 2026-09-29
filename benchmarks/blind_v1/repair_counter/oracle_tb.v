@@ -1,0 +1,3 @@
+`timescale 1ns/1ps
+module oracle_tb; reg clk=0,rst=1,en=0,up=1; wire [7:0] q; integer i; sat_counter8 dut(.clk(clk),.rst(rst),.en(en),.up(up),.q(q)); always #5 clk=~clk;
+initial begin repeat(2)@(posedge clk);#1;rst=0;if(q!==0)begin $display("FAIL: reset");$finish;end en=1;for(i=0;i<260;i=i+1)@(posedge clk);#1;if(q!==8'hff)begin $display("FAIL: high saturation %h",q);$finish;end up=0;for(i=0;i<260;i=i+1)@(posedge clk);#1;if(q!==0)begin $display("FAIL: low saturation %h",q);$finish;end en=0;repeat(3)@(posedge clk);#1;if(q!==0)begin $display("FAIL: hold");$finish;end $display("PASS: blind repair");$finish;end endmodule

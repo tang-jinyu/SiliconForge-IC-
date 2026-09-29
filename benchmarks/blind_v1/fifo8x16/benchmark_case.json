@@ -1,0 +1,1 @@
+{"case_id":"blind_fifo8x16","title":"Blind synchronous FIFO","task_kind":"rtl_module_generation","task_file":"task.md","oracle_testbench":"oracle_tb.v","expected":{"overall_pass":true,"simulation_passed":true,"synthesis_passed":true,"max_repair_attempts":3,"required_artifacts":["rtl/rtl_code.v","tb/testbench.v","doc/eda_result.json"]}}
